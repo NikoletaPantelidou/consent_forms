@@ -11,18 +11,31 @@
         font-size: 16px;
         color: #111;
       }
-      body {
-        margin: 20px;
-        background: #fff;
-      }
+    body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    }
+
+    form {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    }
+    
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    box-sizing: border-box;
+    }
+
       h1,
       h2 {
         margin: 0.2em 0;
       }
-      form {
-        max-width: 900px;
-        margin: 0 auto;
-      }
+      
       .grid {
         display: grid;
         gap: 8px;
@@ -584,5 +597,6 @@
     </script>
   </body>
 </html>
+
 
 
