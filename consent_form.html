@@ -11,33 +11,18 @@
         font-size: 16px;
         color: #111;
       }
-    body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-      
-    }
-
-    form {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    }
-    
-    body {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    box-sizing: border-box;
-    overflow-y: auto;
-    }
-
+      body {
+        margin: 20px;
+        background: #fff;
+      }
       h1,
       h2 {
         margin: 0.2em 0;
       }
-      
+      form {
+        max-width: 900px;
+        margin: 0 auto;
+      }
       .grid {
         display: grid;
         gap: 8px;
@@ -135,8 +120,9 @@
   </head>
   <body>
     <form id="consentForm" autocomplete="off">
-      <h1>Consent & Language Experience Questionnaire</h1>
+      <h1>Consent & Language Experience Questionnaire (LEAP-Q)</h1>
       <p>Please fill in the following information.</p>
+
       <div class="grid">
         <div>
           <label for="last_name">Last Name</label>
@@ -484,19 +470,18 @@
         </div>
       </fieldset>
 
-     <!-- Container for all language sections -->
-<div id="languages-container"></div>
+      <!-- Container for all language sections -->
+      <div id="languages-container"></div>
 
-<!-- Add Language button -->
-<button type="button" id="add-language">Add Language</button>
-<!-- Submit button -->
- <div class="actions">
-     <button type="submit" id="submitBtn">Submit</button>
+      <!-- Add Language button -->
+      <button type="button" id="add-language">Add Language</button>
+      <!-- Submit button -->
+      <div class="actions">
+        <button type="submit" id="submitBtn">Submit</button>
       </div>
-</form>
+    </form>
 
-
- <script>
+    <script>
       const languageTemplateHTML = `
 <fieldset class="language-block">
   <legend>Language specific section (repeat per language)</legend>
@@ -504,26 +489,193 @@
     <label>Language (this block refers to):</label>
     <input name="lang_block_INDEX" type="text" placeholder="e.g., Spanish" />
   </div>
-  <!-- rest of your language template here ... -->
-</fieldset>
-      `;
 
+  <div class="grid">
+    <div>
+      <label>Age began acquiring</label>
+      <input name="age_began_INDEX" type="number" min="0" />
+    </div>
+    <div>
+      <label>Age became fluent</label>
+      <input name="age_fluent_INDEX" type="number" min="0" />
+    </div>
+
+    <div>
+      <label>Age began reading</label>
+      <input name="age_began_read_INDEX" type="number" min="0" />
+    </div>
+    <div>
+      <label>Age fluent reading</label>
+      <input name="age_fluent_read_INDEX" type="number" min="0" />
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <label>Years in country where language is spoken</label>
+      <div class="row">
+        <input name="years_country_INDEX" type="number" min="0" class="small"/>
+        <input name="months_country_INDEX" type="number" min="0" max="11" class="small" placeholder="mo"/>
+      </div>
+    </div>
+
+    <div>
+      <label>Years in family where language is spoken</label>
+      <div class="row">
+        <input name="years_family_INDEX" type="number" min="0" class="small"/>
+        <input name="months_family_INDEX" type="number" min="0" max="11" class="small" placeholder="mo"/>
+      </div>
+    </div>
+
+    <div class="full">
+      <label>Years in school/work environment where language is spoken</label>
+      <div class="row">
+        <input name="years_school_INDEX" type="number" min="0" class="small"/>
+        <input name="months_school_INDEX" type="number" min="0" max="11" class="small" placeholder="mo"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <label>Speaking (0-10)</label>
+      <select name="speaking_INDEX" class="scale"></select>
+    </div>
+    <div>
+      <label>Understanding (0-10)</label>
+      <select name="understanding_INDEX" class="scale"></select>
+    </div>
+    <div>
+      <label>Reading (0-10)</label>
+      <select name="reading_INDEX" class="scale"></select>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <label>How much interacting with friends contributed (0-10)</label>
+      <select name="contrib_friends_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Language tapes/self-instruction (0-10)</label>
+      <select name="contrib_tapes_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Interacting with family (0-10)</label>
+      <select name="contrib_family_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Watching TV (0-10)</label>
+      <select name="contrib_tv_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Reading (0-10)</label>
+      <select name="contrib_read_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Listening to radio (0-10)</label>
+      <select name="contrib_radio_INDEX" class="contrib"></select>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <label>Current exposure: interacting with friends (0-10)</label>
+      <select name="exposure_friends_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Listening to radio/music (0-10)</label>
+      <select name="exposure_radio_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Interacting with family (0-10)</label>
+      <select name="exposure_family_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Reading (0-10)</label>
+      <select name="exposure_reading_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Watching TV (0-10)</label>
+      <select name="exposure_tv_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Language-lab/self-instruction (0-10)</label>
+      <select name="exposure_lab_INDEX" class="contrib"></select>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <label>Perceived foreign accent (0-10)</label>
+      <select name="accent_self_INDEX" class="accent"></select>
+    </div>
+    <div>
+      <label>How frequently others identify you as a non-native speaker (0-10)</label>
+      <select name="accent_others_INDEX" class="accent-freq"></select>
+    </div>
+  </div>
+</fieldset>
+`;
+
+      // Dropdown labels
       const scaleLabels = [
-        "0 - none","1 - very low","2","3","4","5 - adequate","6","7","8","9","10 - perfect"
+        "0 - none",
+        "1 - very low",
+        "2",
+        "3",
+        "4",
+        "5 - adequate",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10 - perfect",
       ];
       const contribLabels = [
-        "0 - not a contributor","1 - minimal contributor","2","3","4","5 - moderate contributor",
-        "6","7","8","9","10 - most contributor"
+        "0 - not a contributor",
+        "1 - minimal contributor",
+        "2",
+        "3",
+        "4",
+        "5 - moderate contributor",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10 - most contributor",
       ];
       const accentLabels = [
-        "0 - none","1 - almost none","2","3","4","5 - moderate","6","7","8","9","10 - pervasive"
+        "0 - none",
+        "1 - almost none",
+        "2",
+        "3",
+        "4",
+        "5 - moderate",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10 - pervasive",
       ];
       const accentFreqLabels = [
-        "0 - never","1 - almost never","2","3","4","5 - half of the time","6","7","8","9","10 - always"
+        "0 - never",
+        "1 - almost never",
+        "2",
+        "3",
+        "4",
+        "5 - half of the time",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10 - always",
       ];
 
+      // Counter to keep track of language sections
       let languageCount = 0;
 
+      // Function to add a language block
       function addLanguageBlock() {
         languageCount++;
         const container = document.getElementById("languages-container");
@@ -532,44 +684,45 @@
         div.innerHTML = html;
         container.appendChild(div);
 
+        // Populate dropdowns
         const block = div.querySelector(".language-block");
 
-        block.querySelectorAll("select.scale").forEach(sel=>{
+        block.querySelectorAll("select.scale").forEach((sel) => {
           sel.innerHTML = `<option value="">click here for scale</option>`;
-          scaleLabels.forEach((label,i)=>{
+          scaleLabels.forEach((label, i) => {
             const option = document.createElement("option");
-            option.value=i;
-            option.text=label;
+            option.value = i;
+            option.text = label;
             sel.add(option);
           });
         });
 
-        block.querySelectorAll("select.contrib").forEach(sel=>{
+        block.querySelectorAll("select.contrib").forEach((sel) => {
           sel.innerHTML = `<option value="">click here for pull-down scale</option>`;
-          contribLabels.forEach((label,i)=>{
-            const option=document.createElement("option");
-            option.value=i;
-            option.text=label;
+          contribLabels.forEach((label, i) => {
+            const option = document.createElement("option");
+            option.value = i;
+            option.text = label;
             sel.add(option);
           });
         });
 
-        block.querySelectorAll("select.accent").forEach(sel=>{
+        block.querySelectorAll("select.accent").forEach((sel) => {
           sel.innerHTML = `<option value="">click here for pull-down scale</option>`;
-          accentLabels.forEach((label,i)=>{
-            const option=document.createElement("option");
-            option.value=i;
-            option.text=label;
+          accentLabels.forEach((label, i) => {
+            const option = document.createElement("option");
+            option.value = i;
+            option.text = label;
             sel.add(option);
           });
         });
 
-        block.querySelectorAll("select.accent-freq").forEach(sel=>{
+        block.querySelectorAll("select.accent-freq").forEach((sel) => {
           sel.innerHTML = `<option value="">click here for pull-down scale</option>`;
-          accentFreqLabels.forEach((label,i)=>{
-            const option=document.createElement("option");
-            option.value=i;
-            option.text=label;
+          accentFreqLabels.forEach((label, i) => {
+            const option = document.createElement("option");
+            option.value = i;
+            option.text = label;
             sel.add(option);
           });
         });
@@ -579,27 +732,13 @@
       addLanguageBlock();
 
       // Button listener
-      document.getElementById("add-language").addEventListener("click", addLanguageBlock);
-
-      // Form submit listener
-      document.getElementById("consentForm").addEventListener("submit", function(e){
-        e.preventDefault(); // prevent default submission
-        const form = e.target;
-        const data = Object.fromEntries(new FormData(form).entries());
-
-        if (window.parent && window.parent !== window) {
-          window.parent.postMessage(
-            { type: "pcibex_consent_leapq", payload: data },
-            "*"
-          );
-        }
-
-       form.innerHTML = "<p>Form submitted! The experiment will continue automatically.</p>";
-
-      });
+      document
+        .getElementById("add-language")
+        .addEventListener("click", addLanguageBlock);
     </script>
   </body>
 </html>
+
 
 
 
