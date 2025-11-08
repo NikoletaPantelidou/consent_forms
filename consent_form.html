@@ -118,8 +118,8 @@
       }
     </style>
   </head>
-  <body>
-    <body id="consentForm" autocomplete="off">
+ <body>
+  <form id="consentForm" autocomplete="off">
       <h1>Consent & Language Experience Questionnaire (LEAP-Q)</h1>
       <p>Please fill in the following information.</p>
 
@@ -475,6 +475,10 @@
 
 <!-- Add Language button -->
 <button type="button" id="add-language">Add Language</button>
+    <div class="actions">
+  <button type="submit" id="submitBtn">Submit</button>
+</div>
+
 
 <script>
 const languageTemplateHTML = `
@@ -689,6 +693,25 @@ addLanguageBlock();
 
 // Button listener
 document.getElementById("add-language").addEventListener("click", addLanguageBlock);
+document.getElementById("consentForm").addEventListener("submit", function(e){
+  e.preventDefault(); // prevent default submission
+
+  const form = e.target;
+  const data = Object.fromEntries(new FormData(form).entries());
+
+  // Send data to PCIbex
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage(
+      { type: "pcibex_consent_leapq", payload: data },
+      "*"
+    );
+  }
+
+  // Optionally give feedback
+  alert("Form submitted! The experiment will continue.");
+});
 </script>
+  </form>
 </body>
 </html>
+
