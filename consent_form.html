@@ -735,9 +735,19 @@
       document
         .getElementById("add-language")
         .addEventListener("click", addLanguageBlock);
+    document.getElementById("consentForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    // Collect your form data
+    const formData = Object.fromEntries(new FormData(this).entries());
+    
+    // Send to parent PCIbex window
+    window.parent.postMessage({ type: "consentSubmitted", data: formData }, "*");
+});
     </script>
   </body>
 </html>
+
 
 
 
