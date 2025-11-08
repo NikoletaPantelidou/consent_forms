@@ -738,18 +738,19 @@
     document.getElementById("consentForm").addEventListener("submit", function(e) {
     e.preventDefault();
     
-  document.getElementById("consentForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // prevent normal form submission
-    // Collect form data
+  document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("consentForm");
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
     const formData = Object.fromEntries(new FormData(this).entries());
-    // Send data to parent PCIbex window
     window.parent.postMessage({ type: "consentSubmitted", data: formData }, "*");
-     //Relocation
-      window.location.href = "https://farm.pcibex.net/p/KyMQzL/";
-    });
+    window.location.href = "https://farm.pcibex.net/p/KyMQzL/";
+  });
+});
     </script>
   </body>
 </html>
+
 
 
 
