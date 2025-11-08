@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Consent & LEAP-Q — Form</title>
+    <style>
+      :root {
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+        font-size: 16px;
+        color: #111;
+      }
+      body {
+        margin: 20px;
+        background: #fff;
+      }
+      h1,
+      h2 {
+        margin: 0.2em 0;
+      }
+      form {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .grid {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: 1fr 1fr;
+      }
+      .full {
+        grid-column: 1 / -1;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      input[type="text"],
+      input[type="date"],
+      input[type="number"],
+      textarea,
+      select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+      }
+      .inline {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .small {
+        width: 80px;
+      }
+      fieldset {
+        margin: 16px 0;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+      }
+      legend {
+        font-weight: 700;
+        padding: 0 6px;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .cols-5 {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
+      }
+      .center {
+        text-align: center;
+      }
+      .actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 12px;
+      }
+      button {
+        padding: 10px 14px;
+        border-radius: 8px;
+        border: 0;
+        background: #0069ff;
+        color: white;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .secondary {
+        background: #eee;
+        color: #111;
+      }
+      .error {
+        color: #c00;
+        font-weight: 700;
+      }
+      .output {
+        white-space: pre-wrap;
+        background: #f7f7f7;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #eee;
+        margin-top: 12px;
+      }
+      @media (max-width: 700px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .cols-5 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <body id="consentForm" autocomplete="off">
+      <h1>Consent & Language Experience Questionnaire (LEAP-Q)</h1>
+      <p>Please fill in the following information.</p>
+
+      <div class="grid">
+        <div>
+          <label for="last_name">Last Name</label>
+          <input id="last_name" name="last_name" type="text" />
+        </div>
+        <div>
+          <label for="first_name">First Name</label>
+          <input id="first_name" name="first_name" type="text" />
+        </div>
+
+        <div>
+          <label for="today_date">Today's Date</label>
+          <input id="today_date" name="today_date" type="date" />
+        </div>
+        <div>
+          <label for="age">Age</label>
+          <input id="age" name="age" type="number" min="0" class="small" />
+        </div>
+
+        <div>
+          <label for="dob">Date of Birth</label>
+          <input id="dob" name="dob" type="date" />
+        </div>
+        <div>
+          <label>Sex</label>
+          <div class="inline">
+            <label><input type="radio" name="sex" value="Male" /> Male</label>
+            <label
+              ><input type="radio" name="sex" value="Female" /> Female</label
+            >
+            <label><input type="radio" name="sex" value="Other" /> Other</label>
+          </div>
+        </div>
+      </div>
+
+      <fieldset>
+        <legend>(1) Languages in order of dominance</legend>
+        <div class="grid">
+          <div><label>1</label><input name="dominance_1" type="text" /></div>
+          <div><label>2</label><input name="dominance_2" type="text" /></div>
+          <div><label>3</label><input name="dominance_3" type="text" /></div>
+          <div><label>4</label><input name="dominance_4" type="text" /></div>
+          <div class="full">
+            <label>5</label><input name="dominance_5" type="text" />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>(2) Languages in order of acquisition (native first)</legend>
+        <div class="grid">
+          <div><label>1</label><input name="acq_1" type="text" /></div>
+          <div><label>2</label><input name="acq_2" type="text" /></div>
+          <div><label>3</label><input name="acq_3" type="text" /></div>
+          <div><label>4</label><input name="acq_4" type="text" /></div>
+          <div class="full">
+            <label>5</label><input name="acq_5" type="text" />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          (3) Current percent exposure to each language (should sum to 100)
+        </legend>
+        <div class="grid">
+          <div>
+            <label>Language 1</label><input name="exp_lang_1" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="exp_pct_1" type="number" min="0" max="100" />
+          </div>
+
+          <div>
+            <label>Language 2</label><input name="exp_lang_2" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="exp_pct_2" type="number" min="0" max="100" />
+          </div>
+
+          <div>
+            <label>Language 3</label><input name="exp_lang_3" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="exp_pct_3" type="number" min="0" max="100" />
+          </div>
+
+          <div>
+            <label>Language 4</label><input name="exp_lang_4" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="exp_pct_4" type="number" min="0" max="100" />
+          </div>
+
+          <div>
+            <label>Language 5</label><input name="exp_lang_5" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="exp_pct_5" type="number" min="0" max="100" />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          (4) Language choice for reading (percentages; sum to 100)
+        </legend>
+        <div class="grid">
+          <div>
+            <label>Language 1</label><input name="read_lang_1" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="read_pct_1" type="number" min="0" max="100" />
+          </div>
+
+          <div>
+            <label>Language 2</label><input name="read_lang_2" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="read_pct_2" type="number" min="0" max="100" />
+          </div>
+
+          <div>
+            <label>Language 3</label><input name="read_lang_3" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="read_pct_3" type="number" min="0" max="100" />
+          </div>
+
+          <div>
+            <label>Language 4</label><input name="read_lang_4" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="read_pct_4" type="number" min="0" max="100" />
+          </div>
+
+          <div>
+            <label>Language 5</label><input name="read_lang_5" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="read_pct_5" type="number" min="0" max="100" />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          (5) Language choice when speaking to someone equally fluent
+          (percentages; sum to 100)
+        </legend>
+        <div class="grid">
+          <div>
+            <label>Language 1</label><input name="speak_lang_1" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="speak_pct_1" type="number" min="0" max="100" />
+          </div>
+
+          <div>
+            <label>Language 2</label><input name="speak_lang_2" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="speak_pct_2" type="number" min="0" max="100" />
+          </div>
+
+          <div>
+            <label>Language 3</label><input name="speak_lang_3" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="speak_pct_3" type="number" min="0" max="100" />
+          </div>
+
+          <div>
+            <label>Language 4</label><input name="speak_lang_4" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="speak_pct_4" type="number" min="0" max="100" />
+          </div>
+
+          <div>
+            <label>Language 5</label><input name="speak_lang_5" type="text" />
+          </div>
+          <div>
+            <label>%</label
+            ><input name="speak_pct_5" type="number" min="0" max="100" />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>(6) Cultures and identification (0-10)</legend>
+        <div class="grid">
+          <div>
+            <label>Culture 1</label><input name="culture_1" type="text" />
+          </div>
+          <div>
+            <label>Ident (0-10)</label>
+            <select name="culture_val_1">
+              <option value="">click here for scale</option>
+              <option value="0">0 - no identification</option>
+              <option value="1">1 - very low identification</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - moderate identification</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10 - complete identification</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Culture 2</label><input name="culture_2" type="text" />
+          </div>
+          <div>
+            <label>Ident (0-10)</label>
+            <select name="culture_val_2">
+              <option value="">click here for scale</option>
+              <option value="0">0 - no identification</option>
+              <option value="1">1 - very low identification</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - moderate identification</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10 - complete identification</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Culture 3</label><input name="culture_3" type="text" />
+          </div>
+          <div>
+            <label>Ident (0-10)</label>
+            <select name="culture_val_1">
+              <option value="">click here for scale</option>
+              <option value="0">0 - no identification</option>
+              <option value="1">1 - very low identification</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - moderate identification</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10 - complete identification</option>
+            </select>
+          </div>
+
+          <div class="full">
+            <label>Other cultures / notes</label>
+            <textarea name="culture_notes" rows="3"></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>(7) Education</legend>
+        <div class="row" style="gap: 14px; flex-wrap: wrap">
+          <label
+            >Years of formal education:
+            <input name="education_years" type="number" min="0" class="small"
+          /></label>
+          <div>
+            <label>Highest education level (or US equivalent)</label>
+            <select name="education_level">
+              <option value="">click here for scale</option>
+              <option>Less than High School</option>
+              <option>High School</option>
+              <option>Some College</option>
+              <option>College</option>
+              <option>Some Graduate School</option>
+              <option>Masters</option>
+              <option>Professional Training</option>
+              <option>Ph.D./M.D./J.D.</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>(8) Immigration</legend>
+        <div class="grid">
+          <div>
+            <label>Date of immigration to the USA (if applicable)</label>
+            <input type="date" name="immig_date_us" />
+          </div>
+          <div class="full">
+            <label
+              >If immigrated to other country, provide country & date</label
+            >
+            <input
+              name="immig_other"
+              type="text"
+              placeholder="Country and date"
+            />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>(9) Vision/hearing/language/learning issues</legend>
+        <div>
+          <label
+            ><input type="checkbox" name="issue_vision" value="vision" /> Vision
+            problem</label
+          >
+          <label
+            ><input type="checkbox" name="issue_hearing" value="hearing" />
+            Hearing impairment</label
+          >
+          <label
+            ><input type="checkbox" name="issue_language" value="language" />
+            Language disability</label
+          >
+          <label
+            ><input type="checkbox" name="issue_learning" value="learning" />
+            Learning disability</label
+          >
+        </div>
+        <div class="full">
+          <label>If yes, please explain (including any corrections)</label>
+          <textarea name="issues_explain" rows="3"></textarea>
+        </div>
+      </fieldset>
+
+     <!-- Container for all language sections -->
+<div id="languages-container"></div>
+
+<!-- Add Language button -->
+<button type="button" id="add-language">Add Language</button>
+
+<script>
+const languageTemplateHTML = `
+<fieldset class="language-block">
+  <legend>Language specific section (repeat per language)</legend>
+  <div class="full">
+    <label>Language (this block refers to):</label>
+    <input name="lang_block_INDEX" type="text" placeholder="e.g., Spanish" />
+  </div>
+
+  <div class="grid">
+    <div>
+      <label>Age began acquiring</label>
+      <input name="age_began_INDEX" type="number" min="0" />
+    </div>
+    <div>
+      <label>Age became fluent</label>
+      <input name="age_fluent_INDEX" type="number" min="0" />
+    </div>
+
+    <div>
+      <label>Age began reading</label>
+      <input name="age_began_read_INDEX" type="number" min="0" />
+    </div>
+    <div>
+      <label>Age fluent reading</label>
+      <input name="age_fluent_read_INDEX" type="number" min="0" />
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <label>Years in country where language is spoken</label>
+      <div class="row">
+        <input name="years_country_INDEX" type="number" min="0" class="small"/>
+        <input name="months_country_INDEX" type="number" min="0" max="11" class="small" placeholder="mo"/>
+      </div>
+    </div>
+
+    <div>
+      <label>Years in family where language is spoken</label>
+      <div class="row">
+        <input name="years_family_INDEX" type="number" min="0" class="small"/>
+        <input name="months_family_INDEX" type="number" min="0" max="11" class="small" placeholder="mo"/>
+      </div>
+    </div>
+
+    <div class="full">
+      <label>Years in school/work environment where language is spoken</label>
+      <div class="row">
+        <input name="years_school_INDEX" type="number" min="0" class="small"/>
+        <input name="months_school_INDEX" type="number" min="0" max="11" class="small" placeholder="mo"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <label>Speaking (0-10)</label>
+      <select name="speaking_INDEX" class="scale"></select>
+    </div>
+    <div>
+      <label>Understanding (0-10)</label>
+      <select name="understanding_INDEX" class="scale"></select>
+    </div>
+    <div>
+      <label>Reading (0-10)</label>
+      <select name="reading_INDEX" class="scale"></select>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <label>How much interacting with friends contributed (0-10)</label>
+      <select name="contrib_friends_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Language tapes/self-instruction (0-10)</label>
+      <select name="contrib_tapes_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Interacting with family (0-10)</label>
+      <select name="contrib_family_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Watching TV (0-10)</label>
+      <select name="contrib_tv_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Reading (0-10)</label>
+      <select name="contrib_read_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Listening to radio (0-10)</label>
+      <select name="contrib_radio_INDEX" class="contrib"></select>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <label>Current exposure: interacting with friends (0-10)</label>
+      <select name="exposure_friends_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Listening to radio/music (0-10)</label>
+      <select name="exposure_radio_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Interacting with family (0-10)</label>
+      <select name="exposure_family_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Reading (0-10)</label>
+      <select name="exposure_reading_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Watching TV (0-10)</label>
+      <select name="exposure_tv_INDEX" class="contrib"></select>
+    </div>
+    <div>
+      <label>Language-lab/self-instruction (0-10)</label>
+      <select name="exposure_lab_INDEX" class="contrib"></select>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <label>Perceived foreign accent (0-10)</label>
+      <select name="accent_self_INDEX" class="accent"></select>
+    </div>
+    <div>
+      <label>How frequently others identify you as a non-native speaker (0-10)</label>
+      <select name="accent_others_INDEX" class="accent-freq"></select>
+    </div>
+  </div>
+</fieldset>
+`;
+
+// Dropdown labels
+const scaleLabels = [
+  "0 - none", "1 - very low","2","3","4","5 - adequate","6","7","8","9","10 - perfect"
+];
+const contribLabels = [
+  "0 - not a contributor","1 - minimal contributor","2","3","4","5 - moderate contributor",
+  "6","7","8","9","10 - most contributor"
+];
+const accentLabels = [
+  "0 - none","1 - almost none","2","3","4","5 - moderate","6","7","8","9","10 - pervasive"
+];
+const accentFreqLabels = [
+  "0 - never","1 - almost never","2","3","4","5 - half of the time","6","7","8","9","10 - always"
+];
+
+// Counter to keep track of language sections
+let languageCount = 0;
+
+// Function to add a language block
+function addLanguageBlock() {
+  languageCount++;
+  const container = document.getElementById("languages-container");
+  const html = languageTemplateHTML.replace(/INDEX/g, languageCount);
+  const div = document.createElement("div");
+  div.innerHTML = html;
+  container.appendChild(div);
+
+  // Populate dropdowns
+  const block = div.querySelector(".language-block");
+
+  block.querySelectorAll("select.scale").forEach(sel=>{
+    sel.innerHTML = `<option value="">click here for scale</option>`;
+    scaleLabels.forEach((label,i)=>{
+      const option = document.createElement("option");
+      option.value=i;
+      option.text=label;
+      sel.add(option);
+    });
+  });
+
+  block.querySelectorAll("select.contrib").forEach(sel=>{
+    sel.innerHTML = `<option value="">click here for pull-down scale</option>`;
+    contribLabels.forEach((label,i)=>{
+      const option=document.createElement("option");
+      option.value=i;
+      option.text=label;
+      sel.add(option);
+    });
+  });
+
+  block.querySelectorAll("select.accent").forEach(sel=>{
+    sel.innerHTML = `<option value="">click here for pull-down scale</option>`;
+    accentLabels.forEach((label,i)=>{
+      const option=document.createElement("option");
+      option.value=i;
+      option.text=label;
+      sel.add(option);
+    });
+  });
+
+  block.querySelectorAll("select.accent-freq").forEach(sel=>{
+    sel.innerHTML = `<option value="">click here for pull-down scale</option>`;
+    accentFreqLabels.forEach((label,i)=>{
+      const option=document.createElement("option");
+      option.value=i;
+      option.text=label;
+      sel.add(option);
+    });
+  });
+}
+
+// Add initial language block on page load
+addLanguageBlock();
+
+// Button listener
+document.getElementById("add-language").addEventListener("click", addLanguageBlock);
+</script>
+</body>
+</html>
