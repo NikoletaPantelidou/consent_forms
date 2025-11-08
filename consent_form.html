@@ -738,15 +738,17 @@
     document.getElementById("consentForm").addEventListener("submit", function(e) {
     e.preventDefault();
     
-    // Collect your form data
+  document.getElementById("consentForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // prevent normal form submission
+    // Collect form data
     const formData = Object.fromEntries(new FormData(this).entries());
-    
-    // Send to parent PCIbex window
+    // Send data to parent PCIbex window
     window.parent.postMessage({ type: "consentSubmitted", data: formData }, "*");
 });
     </script>
   </body>
 </html>
+
 
 
 
