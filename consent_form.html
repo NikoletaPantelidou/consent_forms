@@ -744,10 +744,13 @@
     const formData = Object.fromEntries(new FormData(this).entries());
     // Send data to parent PCIbex window
     window.parent.postMessage({ type: "consentSubmitted", data: formData }, "*");
-});
+     //Relocation
+      window.location.href = "https://farm.pcibex.net/p/KyMQzL/";
+    });
     </script>
   </body>
 </html>
+
 
 
 
