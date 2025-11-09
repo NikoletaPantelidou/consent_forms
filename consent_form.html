@@ -733,31 +733,32 @@
 
       // Button listener
       document
-        .getElementById("add-language")
-        .addEventListener("click", addLanguageBlock);
-  document.getElementById("submitBtn").addEventListener("click", function (event) {
-  event.preventDefault(); // Prevent default form submission
+        .getElementById("add-language").addEventListener("click", addLanguageBlock);
+     // --- PCIbex submission code ---
+    document.getElementById("submitBtn").addEventListener("click", function(event) {
+      event.preventDefault(); // prevent normal form submission
 
-  const container = document.getElementById("languages-container");
-  const data = {};
+    const container = document.getElementById("languages-container");
+    const data = {};
 
-  // Collect all input/select values
-  container.querySelectorAll("input, select").forEach((el) => {
-    data[el.name] = el.value;
+    // collect all input and select values
+    container.querySelectorAll("input, select").forEach(el => {
+      data[el.name] = el.value;
+    });
+
+    // send to PCIbex
+    if (typeof pcibex_controller !== "undefined") {
+      pcibex_controller.send(data);
+      pcibex_controller.end(); // move to next trial
+    } else {
+      console.log("PCIbex controller not found. Data:", data);
+    }
   });
-
-  // Send data to PCIbex
-  if (typeof pcibex_controller !== "undefined") {
-    pcibex_controller.send(data);
-    pcibex_controller.end(); // Move to next trial
-  } else {
-    console.log("PCIbex controller not found. Data:", data);
-  }
-});
 
     </script>
   </body>
 </html>
+
 
 
 
