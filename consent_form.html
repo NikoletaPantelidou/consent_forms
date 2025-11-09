@@ -735,20 +735,30 @@
       document
         .getElementById("add-language")
         .addEventListener("click", addLanguageBlock);
+  document.getElementById("submitBtn").addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent default form submission
 
-  
-function submitAnswer() {
-    var answer = document.getElementById("myinput").value;
-    pcibex_controller.send({
-        "answer": answer
-    });
-    pcibex_controller.end(); // moves to next trial
-}
+  const container = document.getElementById("languages-container");
+  const data = {};
+
+  // Collect all input/select values
+  container.querySelectorAll("input, select").forEach((el) => {
+    data[el.name] = el.value;
+  });
+
+  // Send data to PCIbex
+  if (typeof pcibex_controller !== "undefined") {
+    pcibex_controller.send(data);
+    pcibex_controller.end(); // Move to next trial
+  } else {
+    console.log("PCIbex controller not found. Data:", data);
+  }
+});
+
     </script>
-<input id="myinput" type="text">
-<button onclick="submitAnswer()">Submit</button>
   </body>
 </html>
+
 
 
 
