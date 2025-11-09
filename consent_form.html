@@ -735,20 +735,16 @@
       document
         .getElementById("add-language").addEventListener("click", addLanguageBlock);
 
-      
-    const submitBtn = document.getElementById("submitBtn");
-
-    submitBtn.addEventListener("click", () => {
-        // Generate a random 8-character session ID
-        const sessionID = Math.random().toString(36).substring(2, 10);
-
-        // Redirect to PCIbex experiment with sessionID and consent=1
-        window.location.href = `https://farm.pcibex.net/r/WRYckW/?session=${sessionID}&consent=1`;
+      const submitBtn = document.getElementById("submit-btn");
+      submitBtn.addEventListener("click", () => {
+      const sessionID = Math.random().toString(36).substring(2, 10);
+      window.location.href = `https://farm.pcibex.net/r/WRYckW/?session=${sessionID}&consent=1`;
     });
 
     </script>
   </body>
 </html>
+
 
 
 
