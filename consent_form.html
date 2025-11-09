@@ -735,11 +735,21 @@
       document
         .getElementById("add-language")
         .addEventListener("click", addLanguageBlock);
-      
-});
+
+  
+function submitAnswer() {
+    var answer = document.getElementById("myinput").value;
+    pcibex_controller.send({
+        "answer": answer
+    });
+    pcibex_controller.end(); // moves to next trial
+}
     </script>
+<input id="myinput" type="text">
+<button onclick="submitAnswer()">Submit</button>
   </body>
 </html>
+
 
 
 
