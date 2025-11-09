@@ -735,29 +735,17 @@
       document
         .getElementById("add-language").addEventListener("click", addLanguageBlock);
      // --- PCIbex submission code ---
-    document.getElementById("submitBtn").addEventListener("click", function(event) {
-      event.preventDefault(); // prevent normal form submission
-
-    const container = document.getElementById("languages-container");
-    const data = {};
-
-    // collect all input and select values
-    container.querySelectorAll("input, select").forEach(el => {
-      data[el.name] = el.value;
-    });
-
-    // send to PCIbex
-    if (typeof pcibex_controller !== "undefined") {
-      pcibex_controller.send(data);
-      pcibex_controller.end(); // move to next trial
-    } else {
-      console.log("PCIbex controller not found. Data:", data);
-    }
-  });
-
+     document.querySelector("form").addEventListener("submit", function (e) {
+      e.preventDefault(); // stop normal submit if needed
+  // save or process answers here, e.g. send to Google Sheets or your backend
+  
+  // redirect to your PCIbex experiment
+  window.location.href = "https://farm.pcibex.net/r/WRYckW/";
+});
     </script>
   </body>
 </html>
+
 
 
 
