@@ -734,18 +734,22 @@
       // Button listener
       document
         .getElementById("add-language").addEventListener("click", addLanguageBlock);
-       document.querySelector("form").addEventListener("submit", function (e) {
-  // Let your form handle saving first
-  // (or if it’s automatic, just wait a moment)
-      setTimeout(() => {
-    // Then redirect to PCIbex
-      window.location.href = "https://farm.pcibex.net/r/WRYckW/";
-  }, 500);
+
+      
+    const submitBtn = document.getElementById("submitBtn");
+
+    submitBtn.addEventListener("click", () => {
+    // Generate random session ID (8 characters)
+    const sessionID = Math.random().toString(36).substring(2, 10);
+    
+    // Redirect to PCIbex experiment with sessionID and consent
+    window.location.href = `https://farm.pcibex.net/r/WRYckW/?session=${sessionID}&consent=1`;
 });
 
     </script>
   </body>
 </html>
+
 
 
 
