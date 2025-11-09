@@ -477,7 +477,7 @@
       <button type="button" id="add-language">Add Language</button>
       <!-- Submit button -->
       <div class="actions">
-        <button type="submit" id="submitBtn">Submit</button>
+        <button type="button" id="submitBtn">Submit</button>
       </div>
     </form>
 
@@ -739,16 +739,17 @@
     const submitBtn = document.getElementById("submitBtn");
 
     submitBtn.addEventListener("click", () => {
-    // Generate random session ID (8 characters)
-    const sessionID = Math.random().toString(36).substring(2, 10);
-    
-    // Redirect to PCIbex experiment with sessionID and consent
-    window.location.href = `https://farm.pcibex.net/r/WRYckW/?session=${sessionID}&consent=1`;
-});
+        // Generate a random 8-character session ID
+        const sessionID = Math.random().toString(36).substring(2, 10);
+
+        // Redirect to PCIbex experiment with sessionID and consent=1
+        window.location.href = `https://farm.pcibex.net/r/WRYckW/?session=${sessionID}&consent=1`;
+    });
 
     </script>
   </body>
 </html>
+
 
 
 
